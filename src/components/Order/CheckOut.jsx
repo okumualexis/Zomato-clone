@@ -3,12 +3,25 @@ import { Link } from 'react-router-dom'
 import { useCart } from '../../Hooks/CartContext'
 import './CheckOut.scss'
 import { Button, Container, Table } from 'react-bootstrap'
+import { useState } from 'react'
+import Payment from './Payment'
 
 const CheckOut = () => {
+  const [show, setShow ] = useState(false)
+ 
 
   const {cartItems , cartCount, removeItem, reduceItemCount,AddItemCount, clearCart } = useCart()
 
- 
+  const showModal =() =>{
+    setShow(true)
+  }
+  const hideModal=()=>{
+    setShow(false)
+  }
+
+  const subtotal = cartItems.reduce((total,item)=> total + item.price*item.quantity,0)
+  const tax = subtotal * 0.02
+  const grandTotal = subtotal + tax;
   
   return (
     <Container>
@@ -24,7 +37,7 @@ const CheckOut = () => {
           </li>
         </ul>
       </div>
-      <h1 className='text-center mt-3'>Your Cart [{cartCount} items]</h1>
+      <h1 className='text-center mt-2'>Your Cart [{cartCount} items]</h1>
       <div style={{
         height:'80vh',
         overflowY:'auto',
@@ -100,14 +113,14 @@ const CheckOut = () => {
           </tr>
           <tr>
             <td colSpan='4' className='text-end pe-5 no-border pt-3'>
-              <Button>Check out</Button>
+              <Button disabled={!cartItems.length} onClick={showModal}>Check out</Button>
             </td>
           </tr>
         </tbody>
       </Table>
       </div>
-
-      
+       
+       <Payment show={show} closeModal={hideModal} total={grandTotal} />
     </Container>
   )
 }

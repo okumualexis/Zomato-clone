@@ -11,6 +11,7 @@ import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 const OrderDashboard = () => {
   const [foods, setFoods ] = useState([])
   const [searchFav, setSearchFav] = useState('')
+  const [addedToCart, setAddedToCart ] = useState([])
   const { addToCart, cartCount } = useCart()
 
   useEffect(()=>{
@@ -28,7 +29,11 @@ const OrderDashboard = () => {
 
   const filteredFood = foods.filter(fav => fav.name.toLowerCase().includes(searchFav.toLowerCase()))
 
- 
+  const cartAddItem =(item)=>{
+    if(addedToCart.includes(item._id)) return;
+    addToCart(item)
+    setAddedToCart(prev=> [...prev, item._id])
+  }
 
 
   return (
@@ -68,7 +73,9 @@ const OrderDashboard = () => {
                         <Card.Title className='d-flex'>{food.name} <span className='ms-auto'>{food.price}Ksh</span></Card.Title>
                         <Card.Text>{food.restaurant}</Card.Text>
                         <div className='text-center'>
-                        <Button onClick={()=>addToCart(food)} variant="primary">Add to Cart</Button>
+                        <Button variant={addedToCart.includes(food._id) ?'primary' :'success'} disabled={addedToCart.includes(food._id)} onClick={()=>cartAddItem(food)}>
+                           { addedToCart.includes(food._id) ? <span>Added to Cart</span>:'Add to cart'}
+                          </Button>
                         </div>
                     </Card.Body>
                     

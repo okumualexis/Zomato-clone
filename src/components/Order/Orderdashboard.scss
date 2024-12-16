@@ -1,0 +1,38 @@
+.navBar{
+   padding-block: 10px;
+   margin-bottom: 20px;
+   justify-content: space-between;
+
+   .brand-name{
+     a{
+       margin-left: 20px;
+       font-size: var(--font-size-4);
+       text-decoration: none;
+       color: var(--gray-7);
+     }
+   }
+
+   .search-input{
+    input{
+      border: none;
+      outline: none;
+      text-indent: 15px;
+    }
+   }
+
+  ul{
+    display: flex;
+    
+
+    li{
+      list-style: none;
+      padding: 0px 20px;
+
+      a{
+        text-decoration: none;
+        color: #000;
+        font-size: var(--font-size-2);
+      }
+    }
+  }
+}

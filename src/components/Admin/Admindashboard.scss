@@ -1,0 +1,44 @@
+.header-bar{
+  background-color: var(--gray-5);
+  padding-block: 12px;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+
+.admin-panel{
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  height: 85vh;
+
+  .sideNav{
+    background-color: var(--gray-2);
+    flex-basis: 15%;
+    padding-top: 20px;
+   ul{
+    li{
+      list-style: none;
+      padding: 10px 0;
+      a{
+        text-decoration: none;
+        font-size: var(--font-size-4);
+        padding: 4px 10px;
+        border-radius: var(--radius-3);
+        color: var(--sand-5);
+        &:hover{
+          background-color: var(--stone-5);
+          color: #fff;
+        }
+      }
+    }
+   }
+    
+  }
+  .content-area{
+    flex-basis: 85%;
+    
+  }
+}

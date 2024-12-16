@@ -1,0 +1,125 @@
+
+.banner{
+  height: 60vh;
+  background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../assets/images/bg.avif') no-repeat center center/cover;
+  color: #fff;
+}
+
+nav{
+  
+  display: flex;
+  justify-content: end;
+  padding-block: 20px;
+  align-items: center;
+
+  ul{
+    
+    display: flex;
+    text-align: end;
+    margin-right: 20px;
+
+    li{
+      list-style: none;
+      padding: 0 20px;
+
+      a{
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media screen and (max-width:550px) {
+  nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    ul{
+      display: flex;
+      width: 200px;
+      background-color: aqua;
+      flex-direction: column;
+      position: fixed;
+      right: -300px;
+
+    }
+  }
+}
+
+.card-item{
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.08);
+  }
+
+  a{
+    text-decoration: none;
+    color: #000;
+  }
+}
+
+.collections{
+  section{
+    display: flex;
+    gap: 20px;
+    .item{
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      height: 400px;
+      border-radius: var(--radius-2);
+      color: #fff;
+      justify-content: flex-end;
+      cursor: pointer;
+
+    }
+    .card1{
+      background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../assets//images//place1.avif') no-repeat center center/cover;
+    }
+    .card2{
+      background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../assets/images/place2.avif') no-repeat center center/cover;
+    }
+    .card3{
+      background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../assets/images/place3.avif') no-repeat center center/cover;
+    }
+    .card4{
+      background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../assets/images/place4.avif') no-repeat center center/cover;
+    }
+  }
+}
+
+footer{
+   padding: 10px 30px;
+   background-color: var(--gray-0);
+  .footer-section{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    
+    
+  
+    div{
+      ul{
+        li{
+          list-style: none;
+          padding: 15px 0;
+  
+          a{
+            text-decoration: none;
+            font-size: var(--font-size-2);
+            color: var(--gray-8);
+            padding: 8px 15px;
+            border-radius: var(--radius-2);
+            &:hover{
+              background-color: var(--gray-4);
+            }
+          }
+        }
+      }
+    }
+
+  }
+}

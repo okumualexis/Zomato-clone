@@ -1,8 +1,12 @@
-import { Button, Form, Modal, Table } from "react-bootstrap"
+import { Alert, Button, Form, Modal, Spinner, Table } from "react-bootstrap"
 import propTypes from "prop-types"
 import { useCart } from "../../Hooks/CartContext"
 import { useState } from "react"
 import axios from "axios"
+import './Payment.scss'
+import ErrorIcon from '@mui/icons-material/Error';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
 
 
 
@@ -12,6 +16,13 @@ const Payment = ({show, closeModal,total}) => {
     residence:'',phone:''
   })
   const [consent, setConsent ] = useState(false)
+  const [loading, setLoading ] = useState(false)
+  const [errorMessage, setErrorMassage ] = useState('')
+  const [sendSuccess, setSendSuccess ] = useState('')
+  const [validation, setValidation ] = useState('')
+
+  const {cartCount, clearCart } = useCart()
+
   const handleChange =(e)=>{
     const {name, value } = e.target;
     setPaymentInfo(prev => ({...prev, [name]:value}))
@@ -26,22 +37,38 @@ const Payment = ({show, closeModal,total}) => {
     }
 
     if(!paymentInfo.residence || !paymentInfo.phone || !consent){
-      console.log("Please fill all fields")
-      return
-    }else{
+      setValidation("Please fill all fields")
+      setTimeout(()=>{
+        setValidation('')
+      },2000)
+     return
+    }
+    else{
+
+      setLoading(true)
 
       try {
         const response = await axios.post('http://localhost:8800/api/payments',paymentData)
-        console.log(response.data)
+        setSendSuccess(response.data.success)
+        setLoading(false)
+        setPaymentInfo(prev=>({...prev, phone:'',residence:''}))
+        setConsent(false)
+        setTimeout(()=>{
+          setSendSuccess()
+          clearCart()
+          closeModal()
+        },2000)
+
        
       } catch (error) {
-       console.log("Error making payment",error)
-      }
+       setErrorMassage(error.response.data)
+       setTimeout(()=>{
+        setErrorMassage(null) 
+      },2000)
     }
  
   }
-
- const {cartCount } = useCart()
+ }
 
   return (
     <div>
@@ -49,7 +76,22 @@ const Payment = ({show, closeModal,total}) => {
         <Modal.Header>
           <Modal.Title>Make payments</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{backgroundColor:'var(--gray-2)'}}>
+        <Modal.Body className="d-flex flex-column" style={{backgroundColor:'var(--gray-2)'}}>
+          
+          
+          <div className="align-self-end">
+            {sendSuccess && (<Alert className="py-2 d-flex gap-1 align-items-center" variant="success"><CheckCircleIcon style={{color:'green'}}/>{sendSuccess}</Alert>)}
+            {validation && (<Alert className="py-2 d-flex gap-1 align-items-center" variant="danger"><ErrorIcon/>{validation}</Alert>)}
+            {
+              errorMessage && (
+                <Alert className="py-2" variant="danger">
+                  <Alert.Heading className="d-flex gap-1 align-items-center"><ReportProblemIcon/>Oh snap! Your got an Error</Alert.Heading>
+                  <p>{errorMessage}</p>
+                </Alert>
+              )
+            }
+          </div>
+          
           
            <Table striped>
             <thead>
@@ -102,14 +144,25 @@ const Payment = ({show, closeModal,total}) => {
             
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={()=>closeModal()} >Cancel</Button>
-          <Button type="submit"  onClick={handlePayment} >Proceed</Button>
+          <Button variant="danger"  onClick={()=>closeModal()} >Cancel</Button>
+          {
+            loading ? (
+             <Button type="submit" variant="success" disabled >
+               <Spinner animation="grow" size="sm" className="pe-2"/>
+               Procesing...
+              </Button>)
+             :(
+              <Button type="submit" disabled={!total}  onClick={handlePayment} >Proceed</Button>
+            )
+          }
+          
         </Modal.Footer>
 
       </Modal>
     </div>
   )
 }
+
 Payment.propTypes={
   show: propTypes.bool,
   closeModal:propTypes.func,

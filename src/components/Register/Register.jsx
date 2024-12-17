@@ -38,7 +38,7 @@ export function Register(){
    }
    setLoading(true)
    try {
-     const response = await axios.post('http://localhost:8800/v2/users', userDate)
+     const response = await axios.post('https://porshtech-delivery.vercel.app/api/login', userDate)
       
      setSuccessAlert(response.data)
      setLoading(false)

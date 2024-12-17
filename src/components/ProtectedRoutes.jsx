@@ -2,6 +2,7 @@
 import { decodedToken, getToken } from '../Composable/handleAuth'
 import { Navigate, Outlet, } from 'react-router-dom'
 
+
 const ProtectedRoutes = () => {
  
   const token = getToken()
@@ -9,7 +10,7 @@ const ProtectedRoutes = () => {
 
  
 
-  return decoded ? <Outlet/> : <Navigate to="/"/>      
+  return decoded ? <Outlet/>  : <Navigate to="/"/>      
 }
 
 export default ProtectedRoutes

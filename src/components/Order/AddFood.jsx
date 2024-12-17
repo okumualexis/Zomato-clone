@@ -45,7 +45,7 @@ const AddFood = () => {
      setLoading(true)
    
      try {
-        await axios.post('http://localhost:8800/v2/foods',food)
+        await axios.post('https://porshtech-delivery.vercel.app/api/foods',food)
         setLoading(false)
        setFoodItems(prev => ({...prev,name:'',price:'',restaurant:'',image:''}))
        setImage('')

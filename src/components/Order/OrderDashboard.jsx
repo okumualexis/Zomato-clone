@@ -27,7 +27,7 @@ const OrderDashboard = () => {
         return
       }
       try {
-        const response = await axios.get('http://localhost:8800/v2/foods',{
+        const response = await axios.get('https://porshtech-delivery.vercel.app/api/foods',{
           headers:{
             Authorization:`Bearer ${token}`
           }

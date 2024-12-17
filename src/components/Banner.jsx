@@ -21,7 +21,7 @@ const Banner = ({user}) => {
   const email = logged ? logged.email : null
   const validToken = isTokenValid()
 
- 
+  console.log(email)
   const logoutUser =()=>{
     logout()
     navigate('/')

@@ -34,7 +34,7 @@ export const Login =() =>{
 
     try {
 
-      const response = await axios.post('http://localhost:8800/v2/login',userCredential)
+      const response = await axios.post('http://localhost:3000/api/login',userCredential)
        
       setSuccessAlert(true)
       setToken(response.data)
@@ -47,7 +47,7 @@ export const Login =() =>{
  
     } catch (error) {
       console.log(error)
-      setErrorMessage(error.response.data)
+      setErrorMessage(error.response?.data || "Unknown error had accured try again later!")
       setTimeout(()=>{
         setErrorMessage(null)
       },2000)

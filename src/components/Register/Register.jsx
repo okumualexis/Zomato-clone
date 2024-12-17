@@ -52,7 +52,7 @@ export function Register(){
     
    } catch (error) {
     console.log(error)
-    setErrorMessage(error.response.data)
+    setErrorMessage(error.response?.data || "Unknown error had occured try again later!")
     setTimeout(()=>{
       setErrorMessage(null)
     },3000)

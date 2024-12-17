@@ -28,6 +28,8 @@ const Payment = ({show, closeModal,total}) => {
     setPaymentInfo(prev => ({...prev, [name]:value}))
   }
 
+
+
   const handlePayment = async(e)=>{
     e.preventDefault()
     const paymentData ={
@@ -48,7 +50,7 @@ const Payment = ({show, closeModal,total}) => {
       setLoading(true)
 
       try {
-        const response = await axios.post('http://localhost:8800/api/payments',paymentData)
+        const response = await axios.post('https://porshtech-delivery.vercel.app/api/payments',paymentData)
         setSendSuccess(response.data.success)
         setLoading(false)
         setPaymentInfo(prev=>({...prev, phone:'',residence:''}))
@@ -61,7 +63,7 @@ const Payment = ({show, closeModal,total}) => {
 
        
       } catch (error) {
-       setErrorMassage(error.response.data)
+       setErrorMassage(error.response?.data?.message || 'Unknown error had occured!')
        setTimeout(()=>{
         setErrorMassage(null) 
       },2000)

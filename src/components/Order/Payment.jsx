@@ -76,7 +76,7 @@ const Payment = ({show, closeModal,total}) => {
         <Modal.Header>
           <Modal.Title>Make payments</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="d-flex flex-column" style={{backgroundColor:'var(--gray-2)'}}>
+        <Modal.Body className="d-flex flex-column" >
           
           
           <div className="align-self-end">
@@ -93,7 +93,7 @@ const Payment = ({show, closeModal,total}) => {
           </div>
           
           
-           <Table striped>
+           <Table >
             <thead>
               <tr>
                 <th className="text-center">Order summary</th>

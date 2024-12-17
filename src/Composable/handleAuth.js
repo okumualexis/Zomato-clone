@@ -20,6 +20,7 @@ export const isTokenValid =() =>{
        return true;
      }else{
       console.warn("Token has expired")
+      localStorage.removeItem('authToken')
       return false
      }
     

@@ -9,7 +9,7 @@ const ProtectedRoutes = () => {
 
  
 
-  return decoded ? <Outlet/> : <Navigate to="/login"/>      
+  return decoded ? <Outlet/> : <Navigate to="/"/>      
 }
 
 export default ProtectedRoutes

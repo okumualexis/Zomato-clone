@@ -66,9 +66,9 @@ export function Register(){
     <main className='auth-form-container'>
     <div className="form-holder">
       <div className='alert-box'>
-       { successAlert && <span className='alert alert-pop   py-2' role='alert'>
+       { successAlert && <span className='alert alert-pop d-flex align-items-center gap-2 py-2' role='alert'>
         { successAlert}
-        <CheckCircleIcon style={{color:'blue'}}/>
+        <CheckCircleIcon style={{color:'green'}}/>
         </span>} 
        { erroMessage && <span className='alert alert-danger py-2' role='alert'>{ erroMessage}</span>} 
       </div>
@@ -79,24 +79,24 @@ export function Register(){
         <div className='row'>
           <div className='col'>
             <label htmlFor="firstName" className="form-label">FirstName</label>
-            <input required type="text" id="firstName" name="firstName" value={userInfo.firstName} onChange={handleChange} className="form-control" placeholder='Enter first name' />
+            <input required type="text" id="firstName" name="firstName" value={userInfo.firstName} onChange={handleChange} className="form-control" autoComplete='off' placeholder='Enter first name' />
           </div>
 
           <div className='col'>
             <label htmlFor="lastName"  className="form-label">LastName</label>
-            <input required type="text" id="lastName" name="lastName" value={userInfo.lastName} onChange={handleChange} className="form-control" placeholder='Enter last name' />
+            <input required type="text" id="lastName" name="lastName" value={userInfo.lastName} onChange={handleChange} className="form-control" autoComplete='off' placeholder='Enter last name' />
           </div>
         </div>
 
         <div className='row'>
         <div className='w-75 my-2 col'>
           <label htmlFor="username"  className="form-label">Username</label>
-          <input required type="text" id="username" name="username" value={userInfo.username} onChange={handleChange} className="form-control" placeholder='Username' />
+          <input required type="text" id="username" name="username" value={userInfo.username} onChange={handleChange} className="form-control" autoComplete='off' placeholder='Username' />
         </div>
 
         <div className='w-75 my-2 col'>
           <label htmlFor="email"  className="form-label">Email</label>
-          <input required type="email" id="email" name="email" value={userInfo.email} onChange={handleChange} className="form-control" placeholder='Example@gmail.com' />
+          <input required type="email" id="email" name="email" value={userInfo.email} onChange={handleChange} className="form-control" autoComplete='off' placeholder='Example@gmail.com' />
         </div>
         </div>
 
@@ -104,12 +104,12 @@ export function Register(){
         <div className='row'>
         <div className='w-75 my-2 col'>
           <label htmlFor="password"  className="form-label">Password</label>
-          <input required type="password" id="password" name="password" value={userInfo.password} onChange={handleChange} className="form-control" placeholder='Enter password' />
+          <input required type="password" autoComplete='off' id="password" name="password" value={userInfo.password} onChange={handleChange} className="form-control" placeholder='Enter password' />
         </div>
 
         <div className='w-75 my-2 col'>
           <label htmlFor="confirmPassword"  className="form-label">Confirm password</label>
-          <input required type="password" id="confirmPassword" name="confirmPassword" value={userInfo.confirmPassword} onChange={handleChange} className="form-control" placeholder='Confirm password' />
+          <input required type="password" autoComplete='off' id="confirmPassword" name="confirmPassword" value={userInfo.confirmPassword} onChange={handleChange} className="form-control" placeholder='Confirm password' />
         </div>
         </div>
 

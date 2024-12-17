@@ -1,7 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './banner.scss'
 import { Card, Container,  Form,  NavDropdown } from 'react-bootstrap'
-import SearchIcon from '@mui/icons-material/Search'
 import orderImg from '../assets/images/card1.avif'
 import diningImg from '../assets/images/card2.avif'
 import eventImg from '../assets/images/card3.jpeg'
@@ -9,20 +8,36 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Link , useNavigate} from 'react-router-dom';
 import { decodedToken, getToken, isTokenValid, logout } from '../Composable/handleAuth';
 import propTypes from 'prop-types'
+import { useState } from 'react'
+import AddAlertIcon from '@mui/icons-material/AddAlert';
 
 const Banner = ({user}) => {
-const navigate = useNavigate()
-  const validToken = isTokenValid()
+  const [userloggein, setUserlogein] = useState(null)
+  const navigate = useNavigate()
   const token = getToken()
   const decoded = token ? decodedToken(token) : null
   const userId = decoded ? decoded.userId : null;
   const logged = user(userId)
   const email = logged ? logged.email : null
+  const validToken = isTokenValid()
 
+ 
   const logoutUser =()=>{
     logout()
     navigate('/')
   }
+
+   const checkLoginStatus =()=>{
+    if(!validToken){
+      setUserlogein(true)
+      setTimeout(()=>{
+        setUserlogein(null)
+      },3000)
+    }else{
+      navigate("/order")
+    }
+   }
+
   return (
     <div className='outer-container'>
 
@@ -39,6 +54,7 @@ const navigate = useNavigate()
         
       </nav>
       <div className='mt-5'>
+        {userloggein && (<p className='gap-2 login-alert active' ><AddAlertIcon style={{color:'var(--red-6)'}} /> Login or sign up to continue!</p>)}
       <h1 className='text-center'
                style={{
                 fontWeight:'var(--font-weight-5)',
@@ -50,11 +66,8 @@ const navigate = useNavigate()
                 fontWeight:'var(--font-weight-4)',
                 fontSize:'var(--font-size-7)'
                }}>Discore the best foods and drinks in Nairobi</h6>
-        <div className='text-center d-flex align-items-center py-3 mx-auto w-50 form-control' >
-                <SearchIcon/>
-                <input className=''style={{width:'90%',textIndent:'20px',outline:'none',border:'none'}}
-                type="text"
-                placeholder='Search for restaurant, cuisine or a dish' />
+        <div className='text-center' >
+                <h5>Ready? Get started, login or register to experience the best we offer</h5>
         </div>
       </div>
     </Container>
@@ -84,12 +97,7 @@ const navigate = useNavigate()
                 fontWeight:'var(--font-weight-4)',
                 fontSize:'var(--font-size-7)'
                }}>Discore the best foods and drinks in Nairobi</h6>
-              <div className='text-center d-flex align-items-center py-3 mx-auto w-50 form-control' >
-                <SearchIcon/>
-                <input className=''style={{width:'90%',textIndent:'20px',outline:'none',border:'none'}}
-                type="text"
-                placeholder='Search for restaurant, cuisine or a dish' />
-              </div>
+         
             </div>
           </Container>
         )
@@ -98,14 +106,12 @@ const navigate = useNavigate()
     
 
      <Container className='mt-4 d-flex gap-4 justify-content-center'>
-      <Card className='card-item' style={{width:'20rem'}}>
-        <Link to='/order' >
+      <Card onClick={checkLoginStatus} className='card-item' style={{width:'20rem'}}>
           <Card.Img src={orderImg} variant='top' style={{height:'180px'}}/>
           <Card.Body>
             <Card.Title>Order Online</Card.Title>
             <Card.Text>Stay home and order to your doorstep</Card.Text>
           </Card.Body>
-        </Link>
       </Card>
 
       <Card className='card-item' style={{width:'20rem'}}>

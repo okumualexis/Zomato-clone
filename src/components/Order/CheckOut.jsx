@@ -43,7 +43,7 @@ const CheckOut = () => {
         overflowY:'auto',
         position:'relative'
       }}>
-      <Table>
+      <Table striped hover>
         <thead  style={{
         position:'sticky',
         top:0,

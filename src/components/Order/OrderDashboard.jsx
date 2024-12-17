@@ -7,6 +7,7 @@ import { useCart } from '../../Hooks/CartContext'
 import './Orderdashboard.scss'
 import SearchIcon from '@mui/icons-material/Search'
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
+import {  decodedToken, getToken, isTokenValid } from '../../Composable/handleAuth'
 
 const OrderDashboard = () => {
   const [foods, setFoods ] = useState([])
@@ -14,10 +15,23 @@ const OrderDashboard = () => {
   const [addedToCart, setAddedToCart ] = useState([])
   const { addToCart, cartCount } = useCart()
 
+   const token = getToken()
+  const decoded = decodedToken(token)
+
   useEffect(()=>{
     const fetchFood = async()=>{
+      const token = getToken()
+
+      if(!token && !isTokenValid()){
+        console.log("Permission denied!")
+        return
+      }
       try {
-        const response = await axios.get('http://localhost:8800/v2/foods')
+        const response = await axios.get('http://localhost:8800/v2/foods',{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        })
         setFoods(response.data)
       } catch (error) {
         console.log(error)
@@ -35,6 +49,7 @@ const OrderDashboard = () => {
     setAddedToCart(prev=> [...prev, item._id])
   }
 
+   
 
   return (
     <div>
@@ -56,7 +71,11 @@ const OrderDashboard = () => {
            placeholder='Search favourite dish' style={{width:'92%'}} />
         </div>
         <ul>
-          <li><Link to='/admin'>Admin</Link></li>
+          { 
+          decoded.role ==='admin' &&
+          ( <li><Link to='/admin'>Admin</Link></li>)
+          }
+         
           <li><Link to='/checkout'>
            <ShoppingCartCheckoutIcon/>
            <Badge pill bg='secondary'>{cartCount}</Badge></Link></li>

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './register.scss'
 import axios from 'axios';
 import { setToken } from '../../Composable/handleAuth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import RotateRightIcon from '@mui/icons-material/RotateRight'
 
@@ -83,6 +83,10 @@ export const Login =() =>{
               <RotateRightIcon className='load-spinner'/>
               logging</Button>) : (<button className='btn btn-info px-4'>Login</button>)
           }
+        </div>
+
+        <div className='mt-3'>
+          <p>Don&apos;t have an account? <Link to="/signup">Sign up</Link></p>
         </div>
 
       </form>

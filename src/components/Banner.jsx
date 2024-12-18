@@ -1,6 +1,5 @@
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './banner.scss'
-import { Card, Container,  Form,  NavDropdown } from 'react-bootstrap'
+import { Card, Col, Container,  Form,  NavDropdown, Row, ThemeProvider } from 'react-bootstrap'
 import orderImg from '../assets/images/card1.avif'
 import diningImg from '../assets/images/card2.avif'
 import eventImg from '../assets/images/card3.jpeg'
@@ -10,9 +9,12 @@ import { decodedToken, getToken, isTokenValid, logout } from '../Composable/hand
 import propTypes from 'prop-types'
 import { useState } from 'react'
 import AddAlertIcon from '@mui/icons-material/AddAlert';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Banner = ({user}) => {
   const [userloggein, setUserlogein] = useState(null)
+  const [openNav, setOpenNav ] = useState(false)
   const navigate = useNavigate()
   const token = getToken()
   const decoded = token ? decodedToken(token) : null
@@ -27,6 +29,7 @@ const Banner = ({user}) => {
     navigate('/')
   }
 
+
    const checkLoginStatus =()=>{
     if(!validToken){
       setUserlogein(true)
@@ -39,65 +42,54 @@ const Banner = ({user}) => {
    }
 
   return (
-    <div className='outer-container'>
+    <Container className='p-0' fluid style={{overflow:'hidden'}}>
 
       {
         !decoded && !validToken ? (
-          <Container fluid className='banner'>
+     <Container fluid className='banner p-0'>
       <nav>
-        <ul>
+        <ul id='navLinks' className={openNav ? '#navLinks active' : '#navLinks'}>
           <li><Link >Investors Relation</Link></li>
           <li><Link>Add Restaurant</Link></li>
           <li><Link to='/login'>Login</Link></li>
           <li><Link to='/signup'>Sign up</Link></li>
         </ul>
-        
-      </nav>
-      <div className='mt-5'>
-        {userloggein && (<p className='gap-2 login-alert active' ><AddAlertIcon style={{color:'var(--red-6)'}} /> Login or sign up to continue!</p>)}
-      <h1 className='text-center'
-               style={{
-                fontWeight:'var(--font-weight-5)',
-                fontSize:'var(--font-size-8)',
-                letterSpacing:'var(--font-letterspacing-3)'
-                }}>CuisineCove</h1>
-              <h6 className='text-center mb-4'
-               style={{
-                fontWeight:'var(--font-weight-4)',
-                fontSize:'var(--font-size-7)'
-               }}>Discore the best foods and drinks in Nairobi</h6>
-        <div className='text-center' >
-                <h5>Ready? Get started, login or register to experience the best we offer</h5>
+        <div className='menu-bar' onClick={()=> setOpenNav(prev => !prev)} >
+         { 
+             openNav ? <CloseIcon style={{fontSize:'var(--font-size-6)'}}/> :
+                       <MenuIcon style={{fontSize:'var(--font-size-6)'}}/>   
+         } 
         </div>
+      </nav>
+      <div>
+        {userloggein && (<p className='gap-2 login-alert active' ><AddAlertIcon style={{color:'var(--red-6)'}} /> Login or sign up to continue!</p>)}
+       <h1 className='text-center hero-title'>CuisineCove</h1>
+       <h5 className='text-center hero-text'>Discore the best foods and drinks in Nairobi</h5>
+       <h6 className='text-center hero-desc'>Ready? Get started<br/> login or register to experience the best we offer</h6> 
       </div>
     </Container>
         ):(
           <Container fluid className='banner'>
             <nav>
-              <ul>
-                <li><Link >Investors Relation</Link></li>
+              <ul id='navLinks' className={openNav ? '#navLinks active' : '#navLinks'}>
+                <li><Link>Investors Relation</Link></li>
                 <li><Link>Add Restaurant</Link></li>
                 <li>
-                    <NavDropdown  title={<span style={{color:'#fff'}} >{email}</span>}>
+                    <NavDropdown  title={<span className='email-display'>{email}</span>}>
                       <NavDropdown.Item onClick={()=>logoutUser()}>Sign Out</NavDropdown.Item>
                     </NavDropdown>
                 </li>
               </ul>
-              
+              <div className='menu-bar' onClick={()=> setOpenNav(prev => !prev)} >
+                { 
+                   openNav ? <CloseIcon style={{fontSize:'var(--font-size-6)'}}/> :
+                             <MenuIcon style={{fontSize:'var(--font-size-6)'}}/>   
+                } 
+              </div>
             </nav>
-            <div className='mt-5'>
-              <h1 className='text-center'
-               style={{
-                fontWeight:'var(--font-weight-5)',
-                fontSize:'var(--font-size-8)',
-                letterSpacing:'var(--font-letterspacing-3)'
-                }}>CuisineCove</h1>
-              <h6 className='text-center mb-4'
-               style={{
-                fontWeight:'var(--font-weight-4)',
-                fontSize:'var(--font-size-7)'
-               }}>Discore the best foods and drinks in Nairobi</h6>
-         
+            <div>
+            <h1 className='text-center hero-title'>CuisineCove</h1>
+            <h5 className='text-center hero-text'>Discore the best foods and drinks in Nairobi</h5>
             </div>
           </Container>
         )
@@ -105,76 +97,92 @@ const Banner = ({user}) => {
 
     
 
-     <Container className='mt-4 d-flex gap-4 justify-content-center'>
-      <Card onClick={checkLoginStatus} className='card-item' style={{width:'20rem'}}>
-          <Card.Img src={orderImg} variant='top' style={{height:'180px'}}/>
-          <Card.Body>
-            <Card.Title>Order Online</Card.Title>
-            <Card.Text>Stay home and order to your doorstep</Card.Text>
-          </Card.Body>
-      </Card>
+     <Container className='mt-4  ps-0'>
+     
+      <Row className='gap-5 mx-auto justify-content-center'>
+        <Col md={3}   className='p-0'>
+          <Card onClick={checkLoginStatus} className='card-item mx-auto'>
+            <Card.Img src={orderImg} style={{height:'200px'}}/>
+            <Card.Body>
+              <Card.Title>Order Online</Card.Title>
+              <Card.Text>Stay home and order to your doorstep</Card.Text>
+            </Card.Body>
+         </Card>
+        </Col>
 
-      <Card className='card-item' style={{width:'20rem'}}>
-        <Card.Img src={diningImg} variant='top' style={{height:'180px'}}/>
-        <Card.Body>
-          <Card.Title>Dining</Card.Title>
-          <Card.Text>View the city&apos;s favourite dining venues </Card.Text>
-        </Card.Body>
-      </Card>
-
-      <Card className='card-item' style={{width:'25rem'}}>
-        <Card.Img src={eventImg} variant='top' style={{height:'180px'}}/>
-        <Card.Body>
-          <Card.Title>Live Events</Card.Title>
-          <Card.Text>Discover kenyan&apos;s best events & concerts</Card.Text>
-        </Card.Body>
-      </Card>
+        <Col md={3}   className='p-0'>
+          <Card className='card-item mx-auto'>
+            <Card.Img src={diningImg} variant='top' style={{height:'200px'}}/>
+            <Card.Body>
+              <Card.Title>Dining</Card.Title>
+              <Card.Text>View the city&apos;s favourite dining venues </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={3}  className='p-0'>
+          <Card className='card-item mx-auto'>
+            <Card.Img src={eventImg} variant='top' style={{height:'200px'}}/>
+            <Card.Body>
+              <Card.Title>Live Events</Card.Title>
+              <Card.Text>Discover kenyan&apos;s best events & concerts</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
      </Container>
 
-     <Container className='mt-5 collections'>
-      <h2>Collections</h2>
-      <div className='d-flex justify-content-between'>
-        <p>
-          Explore curated lists of top restaurants, cafes, pubs, and bars in Nairobi KE, based on trends
-        </p>
-        <span className='text-danger'>
-            All collections in Nairobi
-            <ArrowRightIcon/>
-          </span>
+     <Container fluid className='mt-5 collections'>
+      <div className='container justify-content-center'>
+        <h2>Collections</h2>
+        <div className='d-flex '>
+          <p>
+            Explore curated lists of top restaurants, cafes, pubs, and bars in Nairobi KE, based on trends
+          </p>
+          <span className='text-danger ms-auto'>
+              All collections in Nairobi
+              <ArrowRightIcon/>
+            </span>
+      </div> 
       </div>
-       <section>
-          <div className='card1 item'>
+      <Container fluid>
+       <Row className='gap-4 justify-content-center'>
+        <Col md={2} className='card1 item'>
              <p className='mb-0 ms-3'>Top trendeing sports</p>
              <span className='ms-3'>
               42 places
               <ArrowRightIcon/>
              </span>
-          </div>
+          
+        </Col>
 
-          <div className='card2 item'>
+        <Col md={2} className='card2 item'>
              <p className='mb-0 ms-3'>Best insta-worthy places</p>
              <span className='ms-3'>
               48 places
               <ArrowRightIcon/>
              </span>
-          </div>
+         
+        </Col>
 
-          <div className='card3 item'>
+        <Col md={2} className='card3 item'>
+        
              <p className='mb-0 ms-3'>Hot chocolate Hevens</p>
              <span className='ms-3'>
               63places
               <ArrowRightIcon/>
              </span>
-          </div>
-
-          <div className='card4 item'>
+         
+        </Col>
+        <Col md={2} className='card4 item'>
              <p className='mb-0 ms-3'>Strawberry sweet treats</p>
              <span className='ms-3'>
               52 places
               <ArrowRightIcon/>
              </span>
-          </div>
-       </section>
+          
+        </Col>
+      </Row>
+    </Container>
 
        <Container className='d-flex align-items-center' style={{marginTop:'40px'}}>
          <div>
@@ -230,7 +238,7 @@ const Banner = ({user}) => {
      </Container>
 
     
-    </div>
+    </Container>
   )
 }
 export default Banner

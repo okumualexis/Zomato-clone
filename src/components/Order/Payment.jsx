@@ -33,8 +33,8 @@ const Payment = ({show, closeModal,total}) => {
   const handlePayment = async(e)=>{
     e.preventDefault()
     const paymentData ={
-      residence: paymentInfo.residence,
-      phone: paymentInfo.phone,
+      residence: paymentInfo.residence.trim(),
+      phone: paymentInfo.phone.trim(),
       amount: total,
     }
 
@@ -66,7 +66,9 @@ const Payment = ({show, closeModal,total}) => {
        setErrorMassage(error.response?.data?.message || 'Unknown error had occured!')
        setTimeout(()=>{
         setErrorMassage(null) 
-      },2000)
+      },5000)
+    }finally{
+      setLoading(false)
     }
  
   }

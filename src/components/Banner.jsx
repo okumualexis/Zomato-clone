@@ -1,5 +1,5 @@
 import './banner.scss'
-import { Card, Col, Container,  Form,  NavDropdown, Row, ThemeProvider } from 'react-bootstrap'
+import { Card, Col, Container,  Form,  NavDropdown, Row } from 'react-bootstrap'
 import orderImg from '../assets/images/card1.avif'
 import diningImg from '../assets/images/card2.avif'
 import eventImg from '../assets/images/card3.jpeg'
@@ -134,7 +134,7 @@ const Banner = ({user}) => {
      <Container fluid className='mt-5 collections'>
       <div className='container justify-content-center'>
         <h2>Collections</h2>
-        <div className='d-flex '>
+        <div className='d-flex collec-text'>
           <p>
             Explore curated lists of top restaurants, cafes, pubs, and bars in Nairobi KE, based on trends
           </p>
@@ -146,7 +146,7 @@ const Banner = ({user}) => {
       </div>
       <Container fluid>
        <Row className='gap-4 justify-content-center'>
-        <Col md={2} className='card1 item'>
+        <Col md={3} className='card1 item'>
              <p className='mb-0 ms-3'>Top trendeing sports</p>
              <span className='ms-3'>
               42 places
@@ -154,17 +154,7 @@ const Banner = ({user}) => {
              </span>
           
         </Col>
-
-        <Col md={2} className='card2 item'>
-             <p className='mb-0 ms-3'>Best insta-worthy places</p>
-             <span className='ms-3'>
-              48 places
-              <ArrowRightIcon/>
-             </span>
-         
-        </Col>
-
-        <Col md={2} className='card3 item'>
+        <Col md={3} className='card3 item'>
         
              <p className='mb-0 ms-3'>Hot chocolate Hevens</p>
              <span className='ms-3'>
@@ -173,7 +163,7 @@ const Banner = ({user}) => {
              </span>
          
         </Col>
-        <Col md={2} className='card4 item'>
+        <Col md={3} className='card4 item'>
              <p className='mb-0 ms-3'>Strawberry sweet treats</p>
              <span className='ms-3'>
               52 places
@@ -184,11 +174,11 @@ const Banner = ({user}) => {
       </Row>
     </Container>
 
-       <Container className='d-flex align-items-center' style={{marginTop:'40px'}}>
+       <Container className='d-flex align-items-center footer-lead' style={{marginTop:'40px'}}>
          <div>
-           <h1>CuisineCove</h1>
+           <h1 className='footer-hero'>CuisineCove</h1>
          </div>
-         <div className='d-flex gap-4 ms-auto' style={{width:'300px'}}>
+         <div className='d-flex gap-4 ms-auto select-div ' >
            <Form.Select>
             <option>Kenya KE</option>
             <option value='tz'>TZ</option>
@@ -203,10 +193,10 @@ const Banner = ({user}) => {
          </div>
        </Container>
 
-       <footer>
-        <section className='footer-section'>
-        <div>
-          <h4>About CuisineCove</h4>
+       <Container>
+        <Row className='footer'>
+        <Col className='footer-links'>
+          <h4 className='footer-text'>About CuisineCove</h4>
           <ul>
             <li><a href="#">Work with us</a></li>
             <li><a href="#">Who we are</a></li>
@@ -214,27 +204,27 @@ const Banner = ({user}) => {
             <li><a href="#">Investor relation</a></li>
             <li><a href="#">Blog</a></li>
           </ul>
-        </div>
-        <div>
-          <h4>For Restaurants</h4>
+        </Col>
+        <Col className='footer-links'>
+          <h4 className='footer-text'>For Restaurants</h4>
           <ul>
             <li><a href="#">Partner with us</a></li>
             <li><a href="#">Apps for you</a></li>
           </ul>
-        </div>
-        <div>
-          <h4>Learn More</h4>
+        </Col>
+        <Col className='footer-links'>
+          <h4 className='footer-text'>Learn More</h4>
           <ul>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Security</a></li>
             <li><a href="#">Terms</a></li>
           </ul>
-        </div>
-        </section>
+        </Col>
+        </Row>
         <div className='text-center py-4'>
           <small>PorshTech LTD &copy; 2024, All rights reserved</small>
         </div>
-       </footer>
+       </Container>
      </Container>
 
     

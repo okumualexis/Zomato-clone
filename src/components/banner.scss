@@ -72,6 +72,15 @@ nav{
   font-weight: var(--font-weight-3);
  }
 
+ .footer-lead{
+  .footer-hero{
+    font-size: var(--font-size-4);
+  }
+  .select-div{
+    width: 300px;
+  }
+ }
+
 @media screen and (max-width:767px) {
   .banner{
     width: 100%;
@@ -140,7 +149,38 @@ nav{
       
     }
   }
+  .collec-text{
+    display: block;
+   span{
+    display: none;
+   }
+   }
+  .footer-lead{
   
+    .footer-hero{
+      font-size: var(--font-size-2);
+    }
+    .select-div{
+      width: 200px;
+    }
+  }
+  .footer{
+    padding: 10px 5px;
+    background-color: blue;
+  .footer-links{
+    ul{
+      
+      li{
+        padding: 4px 0;
+        a{
+         font-size: var(--font-size-0);
+         padding: 4px 2px; 
+        }
+      }
+    }
+  }
+  }
+//end of @media query//  
 }
 
 .card-item{
@@ -174,9 +214,6 @@ nav{
     .card1{
       background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../assets//images//place1.avif') no-repeat center center/cover;
     }
-    .card2{
-      background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../assets/images/place2.avif') no-repeat center center/cover;
-    }
     .card3{
       background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url('../assets/images/place3.avif') no-repeat center center/cover;
     }
@@ -186,25 +223,18 @@ nav{
   /* } */
 }
 
-footer{
+.footer{
    padding: 10px 30px;
    background-color: var(--gray-0);
-  .footer-section{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    
-    
-  
-    div{
+  .footer-links{
       ul{
         li{
           list-style: none;
-          padding: 15px 0;
+          padding: 10px 0;
   
           a{
             text-decoration: none;
-            font-size: var(--font-size-2);
+            font-size: var(--font-size-3);
             color: var(--gray-8);
             padding: 8px 15px;
             border-radius: var(--radius-2);
@@ -214,7 +244,7 @@ footer{
           }
         }
       }
-    }
+    
 
   }
 }

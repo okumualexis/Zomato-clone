@@ -131,8 +131,7 @@ const Banner = ({user}) => {
       </Row>
      </Container>
 
-     <Container fluid className='mt-5 collections'>
-      <div className='container justify-content-center'>
+       <section className='container mt-4 trends'>
         <h2>Collections</h2>
         <div className='d-flex collec-text'>
           <p>
@@ -142,11 +141,13 @@ const Banner = ({user}) => {
               All collections in Nairobi
               <ArrowRightIcon/>
             </span>
-      </div> 
-      </div>
-      <Container fluid>
-       <Row className='gap-4 justify-content-center'>
-        <Col md={3} className='card1 item'>
+        </div> 
+
+       </section>
+
+      <Container fluid className='collections  mt-3'>
+       <Row className='gap-4 mx-auto  justify-content-center'>
+        <Col md={3} className='card1 card-item item '>
              <p className='mb-0 ms-3'>Top trendeing sports</p>
              <span className='ms-3'>
               42 places
@@ -154,7 +155,7 @@ const Banner = ({user}) => {
              </span>
           
         </Col>
-        <Col md={3} className='card3 item'>
+        <Col md={3} className='card3 card-item item'>
         
              <p className='mb-0 ms-3'>Hot chocolate Hevens</p>
              <span className='ms-3'>
@@ -163,7 +164,7 @@ const Banner = ({user}) => {
              </span>
          
         </Col>
-        <Col md={3} className='card4 item'>
+        <Col md={3} className='card4 card-item item'>
              <p className='mb-0 ms-3'>Strawberry sweet treats</p>
              <span className='ms-3'>
               52 places
@@ -193,9 +194,10 @@ const Banner = ({user}) => {
          </div>
        </Container>
 
-       <Container>
-        <Row className='footer'>
+       <Container className='mt-4'>
+        <Row md={4} sm={4} className='footer justify-content-center'>
         <Col className='footer-links'>
+        <div>
           <h4 className='footer-text'>About CuisineCove</h4>
           <ul>
             <li><a href="#">Work with us</a></li>
@@ -204,28 +206,33 @@ const Banner = ({user}) => {
             <li><a href="#">Investor relation</a></li>
             <li><a href="#">Blog</a></li>
           </ul>
+        </div>
         </Col>
-        <Col className='footer-links'>
+        <Col md={4} sm={4} className='footer-links'>
+        <div>
           <h4 className='footer-text'>For Restaurants</h4>
           <ul>
             <li><a href="#">Partner with us</a></li>
             <li><a href="#">Apps for you</a></li>
-          </ul>
+          </ul> 
+        </div>
         </Col>
-        <Col className='footer-links'>
+        <Col md={4} sm={4} className='footer-links'>
+          <div>
           <h4 className='footer-text'>Learn More</h4>
           <ul>
             <li><a href="#">Privacy</a></li>
             <li><a href="#">Security</a></li>
             <li><a href="#">Terms</a></li>
           </ul>
+          </div>
         </Col>
         </Row>
         <div className='text-center py-4'>
           <small>PorshTech LTD &copy; 2024, All rights reserved</small>
         </div>
        </Container>
-     </Container>
+
 
     
     </Container>

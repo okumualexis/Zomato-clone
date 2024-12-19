@@ -76,7 +76,7 @@ const Banner = ({user}) => {
                 <li><Link>Add Restaurant</Link></li>
                 <li>
                     <NavDropdown  title={<span className='email-display'>{email}</span>}>
-                      <NavDropdown.Item onClick={()=>logoutUser()}>Sign Out</NavDropdown.Item>
+                      <NavDropdown.Item className='text-dark' onClick={()=>logoutUser()}>Sign Out</NavDropdown.Item>
                     </NavDropdown>
                 </li>
               </ul>

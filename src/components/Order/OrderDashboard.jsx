@@ -64,8 +64,8 @@ const OrderDashboard = () => {
         <div className='brand-name'>
         <Link to='/'>CuisineCove</Link>
         </div>
-        <div className='form-control d-flex search-input w-25'>
-          <SearchIcon/>
+        <div className='form-control d-flex search-input'>
+          <SearchIcon className='search-icon' />
           <input type="text" value={searchFav}
            onChange={(e)=> setSearchFav(e.target.value)}
            placeholder='Search favourite dish' style={{width:'92%'}} />
@@ -81,6 +81,7 @@ const OrderDashboard = () => {
            <Badge pill bg='secondary'>{cartCount}</Badge></Link></li>
         </ul>
       </Container>
+
       <Container fluid>
         <Row className='d-flex  mx-auto'>
             {

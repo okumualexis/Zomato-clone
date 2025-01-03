@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Banner from './components/Banner'
-import {Login} from './components/Register/Login'
-import {Register} from './components/Register/Register'
+import {Login} from './components/Logins/Login'
+import {Register} from './components/Logins/Register'
 import OrderDashboard from './components/Order/OrderDashboard'
 import Admindashboard from './components/Admin/Admindashboard'
 import CheckOut from './components/Order/CheckOut'
@@ -36,7 +36,7 @@ const loggedUser = (userId) =>{
       
       <Routes>
         <Route path='/' element={<Banner user={loggedUser}/>} />
-        <Route path='/login' element={<Login/>} />
+        <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Register/>} />
         <Route element={<ProtectedRoutes/>}>
           <Route path='/order' element={<OrderDashboard/>} />
